@@ -1,22 +1,21 @@
 public class Pilha {
 
-    private String[] elements;
+    private Music[]elements;
     private int top;
 
     public Pilha(int capacity) {
-        elements = new String[capacity];
+        elements = new Music[capacity];
         top = -1;
     }
-
-    public void push(String valor) {
+    public void push(Music registerMusic) {
         if (top == elements.length - 1) {
             System.out.println("A pilha esta cheia");
             return;
         }
-        elements[++top] = valor; //empilha o valor na proxima posição vazia
+        elements[++top] = registerMusic; //empilha o valor na proxima posição vazia
     }
 
-    public String pop() {
+    public Music pop() {
         if (top == -1) {
             System.out.println("A pilha esta vazia");
             return null;
@@ -31,7 +30,7 @@ public class Pilha {
             return;
         }
         for (int i = top; i >= 0; i--) {
-            System.out.print(elements[i] + " ");
+            System.out.print(elements[i]);
         }
 
     }

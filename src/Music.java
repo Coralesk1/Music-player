@@ -1,10 +1,10 @@
 public class Music {
     private String artist;
-    private String Name;
+    private String name;
     private String duration;
 
     public Music(String name, String artist, String duration) {
-        Name = name;
+        this.name = name;
         this.artist = artist;
         this.duration = duration;
     }
@@ -18,18 +18,25 @@ public class Music {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String tile) {
-        Name = tile;
+        name = tile;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public String toString(){
+        return "Name: " + name +
+                "- Artist: " + artist +
+                "- Duration: " + duration;
     }
 }
