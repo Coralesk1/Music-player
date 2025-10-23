@@ -31,6 +31,7 @@ public class Pilha {
         }
         for (int i = top; i >= 0; i--) {
             System.out.print(elements[i]);
+            System.out.println("index :"+ i);
         }
 
     }

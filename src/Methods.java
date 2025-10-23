@@ -1,13 +1,12 @@
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Methods {
-    public static void registerMusic(){
-        Scanner scanner = new Scanner(System.in);
-        Pilha p = new Pilha(20);
-        boolean outLoop = true;
+    static Pilha p = new Pilha(20);
+    static Scanner scanner = new Scanner(System.in);
 
-        while(outLoop) {
+    public static void registerMusic(){
+
+        while(true) {
             System.out.println("Enter the name: ");
             String nameMusic = scanner.nextLine();
 
@@ -19,25 +18,37 @@ public class Methods {
 
             Music registerMusic = new Music(nameMusic, artistMusic, durationMusic);
             p.push(registerMusic);
-            p.show();
+
             while(true){
                 System.out.println("\nWant to add more music [Y/N] ?");
                 String optionOut = scanner.nextLine().toUpperCase();
 
                 if(optionOut.equals("Y")){
                     System.out.println("Ok...");
+                    break;
                 }else if(optionOut.equals("N")){
-                    System.out.println("Saindo...");
-                    // botar o outloop = true aqui? nao false ah tah
+                    System.out.println("Returning to the menu...");
                     return;
                 }else {
                     System.out.println("Enter a valid option !");
                 }
             }
-
-
+            scanner.close();
         }
-        scanner.close();
 
     }
+    public static void listAllMusic(){
+        p.show();
+
+    }
+    public static void searchEspecificMusic(){
+        System.out.println("Enter the artist or song title : ");
+        String artistOrTitle = scanner.nextLine();
+
+        for()
+            //a questão é como comparar o artistOrTitle com um index de um arry
+
+        scanner.close();
+    }
+
 }
