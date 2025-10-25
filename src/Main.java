@@ -25,10 +25,14 @@ public class Main {
                 case 2:
                     Methods.listAllMusic();
                     continue;
+                case 3:
+                    Methods.searchEspecificMusic();
+                    continue;
                 default:
                     System.out.println("Invalid option.");
                     break;
             }
+            Methods.closeScanner();
         }
 
 
