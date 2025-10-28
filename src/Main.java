@@ -12,6 +12,7 @@ public class Main {
                 2 - List songs
                 3 - Search music 
                 4 - Remove music
+                5 - create playlist
                """);
 
             System.out.printf("Enter the option: ");
@@ -23,11 +24,19 @@ public class Main {
                     Methods.registerMusic();
                     continue;
                 case 2:
+                    Methods.cleanConsole();
                     Methods.listAllMusic();
                     continue;
                 case 3:
+                    Methods.cleanConsole();
                     Methods.searchEspecificMusic();
                     continue;
+                case 4:
+                    Methods.cleanConsole();
+                    Methods.deleteMusic();
+                    continue;
+                case 5:
+
                 default:
                     System.out.println("Invalid option.");
                     break;
