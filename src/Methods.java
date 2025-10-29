@@ -88,6 +88,22 @@ public class Methods {
         cleanConsole();
 
     }
+    public static void playListMusic(){
+        class Node {
+            String data; // só que aqui vamos ter o nosso objeto musics que tem os dados
+            Node next;
+            Node prev;
+
+            public Node (String data){
+                this.data = data;
+            }
+        }
+        class DoublyLinkedList {
+            Node head;
+            Node tail;
+        }
+
+    }
 
     public static void cleanConsole(){
         for(int i = 1; i <= 50; i++) {
@@ -101,5 +117,6 @@ public class Methods {
         System.out.println("Press enter to return to the menu ...");
         scanner.nextLine();
     }
+
 
 }
