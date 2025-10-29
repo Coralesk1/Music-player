@@ -36,7 +36,8 @@ public class Main {
                     Methods.deleteMusic();
                     continue;
                 case 5:
-
+                    Methods.cleanConsole();
+                    Methods.playListMusic();
                 default:
                     System.out.println("Invalid option.");
                     break;

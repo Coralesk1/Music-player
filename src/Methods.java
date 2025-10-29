@@ -89,19 +89,40 @@ public class Methods {
 
     }
     public static void playListMusic(){
-        class Node {
-            String data; // s� que aqui vamos ter o nosso objeto musics que tem os dados
-            Node next;
-            Node prev;
-
-            public Node (String data){
-                this.data = data;
+        Playlist playlist = new Playlist();
+        
+        class Playlist {
+            
+            class Node {
+                String dat; // so que aqui vamos ter o nosso objeto musics que tem os dados
+                Node next; //aponta para frente 
+                Node back; //aponta para traz
+    
+                public Node (String data){
+                    this.data = data;
+                }
+            }
+            class DoublyLinkedList {
+                Node head;
+                Node tail;
+                
+                public void add(){
+                    Node newNode = new Node(data);
+                    if(newNode == null){
+                        head = tail = newNode;
+                    } else {
+                        tail.next = newNode; // o ultimo nó vai apotar para o tail 
+                        newNode.back = tail; // agora o nó sabe que o tail é o anterior dele 
+                        tail = newNode; //  o novo nó passa a ser o ultimo da lista 
+                    }
+    
+                    
+    
+                }
+                    
             }
         }
-        class DoublyLinkedList {
-            Node head;
-            Node tail;
-        }
+        
 
     }
 
