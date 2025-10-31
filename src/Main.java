@@ -12,7 +12,8 @@ public class Main {
                 2 - List songs
                 3 - Search music 
                 4 - Remove music
-                5 - create playlist
+                5 - Create playlist
+                6 - Play playlist
                """);
 
             System.out.println("Enter the option: ");
@@ -39,6 +40,7 @@ public class Main {
                     Methods.cleanConsole();
                     Methods.playListMusic();
                     continue;
+
                 default:
                     System.out.println("Invalid option.");
                     break;

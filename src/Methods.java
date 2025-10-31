@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Methods {
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Music> musics = new ArrayList<>();
+    static ArrayList<Playlist> playLists = new ArrayList<>();
 
     public static void registerMusic(){
 
@@ -21,32 +22,30 @@ public class Methods {
 
             musics.add(new Music(nameMusic, artistMusic, durationMusic));
 
-            while(true){
-                System.out.println("\nWant to add more music [Y/N] ?");
-                String optionOut = scanner.nextLine().toUpperCase().trim();
+            String response;
+            do {
+                System.out.println("\nWant to add more music [y/n] ?");
+                response = scanner.nextLine().toLowerCase().trim();
 
-                if(optionOut.equals("Y")){
-                    System.out.println("Ok...");
-                    break;
-                }else if(optionOut.equals("N")){
-                    cleanConsole();
-                    System.out.println("Returning to the menu...");
-                    return;
-                }else {
-                    cleanConsole();
-                    System.out.println("Enter a valid option !");
+                if(!response.equals("y") && !response.equals("n")) {
+                    System.out.println("Invalid entry");
                 }
-
+            } while (!response.equals("y") && !response.equals("n"));
+            if (response.equals("y")){
+                System.out.println("Ok.");
+            } else if (response.equals("n")){
+                cleanConsole();
+                System.out.println("Returning to the menu...");
+                break;
             }
-
         }
 
     }
-    public static void listAllMusic(){
+    public static boolean listAllMusic(){
         try {
             if(musics.isEmpty()){
-                System.out.println("O array esta vazio !");
-                return;
+                System.out.println("No music was added !");
+                return true;
             }
             System.out.println("List of all songs.");
             for(Music m : musics ){
@@ -57,6 +56,7 @@ public class Methods {
         }
         returnMenu();
         cleanConsole();
+        return false;
     }
     public static void searchEspecificMusic(){
         System.out.println("Enter the artist or song title : ");
@@ -89,24 +89,28 @@ public class Methods {
 
     }
     public static void playListMusic(){
-        
-        class Playlist {
-            
+
+        public static class Playlist {
+            String namePlaylist;
+            public Playlist(String namePLaylist){
+                this.namePlaylist = namePLaylist;
+            }
             class Node {
-                String data; // so que aqui vamos ter o nosso objeto musics que tem os dados
+                Music musics; // so que aqui vamos ter o nosso objeto musics que tem os dados
                 Node next; //aponta para frente
                 Node back; //aponta para traz
 
-                public Node (String data){
-                    this.data = data;
+                public Node (Music musics){
+                    this.musics = musics;
                 }
+
             }
             class DoublyLinkedList {
                 Node head;
                 Node tail;
                 
-                public void add(String data){
-                    Node newNode = new Node(data);
+                public void add(Music musics){
+                    Node newNode = new Node(musics);
                     if(head == null && tail == null){
                         head = tail = newNode;
                     } else {
@@ -115,24 +119,60 @@ public class Methods {
                         tail = newNode; //  o novo nó passa a ser o ultimo da lista
                     }
                 }
-                public void print() {
-                    Node current = head;
-                    while (current != null) {
-                        System.out.println(current.data);
-                        current = current.next;
+                public void print(){
+                    Node currentNode = head; // começa do head
+                    while(currentNode != null){
+                        System.out.println(currentNode.musics); //printa as musicas
+                        currentNode = currentNode.next; //vai para o proximo nó
+                        if (currentNode == null){
+                            break;
+                        }
                     }
                 }
-                    
             }
         }
-        Playlist playlist = new Playlist();
+
+        System.out.printf("What will the playlist's name be ? ");
+        String namePlaylist = scanner.nextLine();
+        Playlist playlist = new Playlist(namePlaylist);
         Playlist.DoublyLinkedList list = playlist.new DoublyLinkedList();
 
-        list.add("Gustavo");
-        list.add("Coral");
-        list.add("Java");
-        list.print();
+        String response;
+        do {
+            System.out.println("Do you want add songs to this playlist [y/n] ? ");
+            response = scanner.nextLine().trim().toLowerCase();
 
+            if (!response.equals("y") && !response.equals("n")) {
+                System.out.println("Invalid entry. Entry only 'y' or 'n'.");
+            }
+        } while (!response.equals("y") && !response.equals("n"));
+
+        if (response.equals("y")) {
+            System.out.println("Choise a song to add");
+            boolean n = Methods.listAllMusic();
+            if(n){
+                returnMenu();
+                cleanConsole();
+                return;
+            }
+
+            System.out.println("Add the song by name : ");
+            String optionMusicAddPlaylist = scanner.nextLine();
+            for(Music music : musics){
+                if (optionMusicAddPlaylist.equals(music.getName())){
+                    list.add(music);
+                }
+            }
+        } else if(response.equals("n")){
+            returnMenu();
+        }
+
+        Playlist playListName = new Playlist(namePlaylist);
+        playLists.add(playListName);
+
+    }
+    public static void PlayPlaylist(){
+        System.out.println("Your playlists");
 
     }
 
