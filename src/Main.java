@@ -15,7 +15,7 @@ public class Main {
                 5 - create playlist
                """);
 
-            System.out.printf("Enter the option: ");
+            System.out.println("Enter the option: ");
             int option = scanner.nextInt();
             scanner.nextLine();
 
@@ -38,6 +38,7 @@ public class Main {
                 case 5:
                     Methods.cleanConsole();
                     Methods.playListMusic();
+                    continue;
                 default:
                     System.out.println("Invalid option.");
                     break;

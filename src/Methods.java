@@ -89,15 +89,14 @@ public class Methods {
 
     }
     public static void playListMusic(){
-        Playlist playlist = new Playlist();
         
         class Playlist {
             
             class Node {
-                String dat; // so que aqui vamos ter o nosso objeto musics que tem os dados
-                Node next; //aponta para frente 
+                String data; // so que aqui vamos ter o nosso objeto musics que tem os dados
+                Node next; //aponta para frente
                 Node back; //aponta para traz
-    
+
                 public Node (String data){
                     this.data = data;
                 }
@@ -106,23 +105,34 @@ public class Methods {
                 Node head;
                 Node tail;
                 
-                public void add(){
+                public void add(String data){
                     Node newNode = new Node(data);
-                    if(newNode == null){
+                    if(head == null && tail == null){
                         head = tail = newNode;
                     } else {
-                        tail.next = newNode; // o ultimo nó vai apotar para o tail 
-                        newNode.back = tail; // agora o nó sabe que o tail é o anterior dele 
-                        tail = newNode; //  o novo nó passa a ser o ultimo da lista 
+                        tail.next = newNode; // o ultimo nó vai apotar para o tail
+                        newNode.back = tail; // agora o nó sabe que o tail é o anterior dele
+                        tail = newNode; //  o novo nó passa a ser o ultimo da lista
                     }
-    
-                    
-    
+                }
+                public void print() {
+                    Node current = head;
+                    while (current != null) {
+                        System.out.println(current.data);
+                        current = current.next;
+                    }
                 }
                     
             }
         }
-        
+        Playlist playlist = new Playlist();
+        Playlist.DoublyLinkedList list = playlist.new DoublyLinkedList();
+
+        list.add("Gustavo");
+        list.add("Coral");
+        list.add("Java");
+        list.print();
+
 
     }
 
