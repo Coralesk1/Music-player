@@ -45,6 +45,7 @@ public class Methods {
         try {
             if(musics.isEmpty()){
                 System.out.println("No music was added !");
+                returnMenu();
                 return true;
             }
             System.out.println("List of all songs.");
@@ -88,49 +89,57 @@ public class Methods {
         cleanConsole();
 
     }
-    public static void playListMusic(){
+    public static class Playlist {
+        String namePlaylist;
+        DoublyLinkedList list;
 
-        public static class Playlist {
-            String namePlaylist;
-            public Playlist(String namePLaylist){
-                this.namePlaylist = namePLaylist;
+        public Playlist(String namePLaylist){
+            this.namePlaylist = namePLaylist;
+        }
+        @Override
+        public String toString(){
+            return "-" + namePlaylist;
+        }
+        public void addMusic(Music music) {
+            list.add(music);
+        }
+        class Node {
+            Music musics; // so que aqui vamos ter o nosso objeto musics que tem os dados
+            Node next; //aponta para frente
+            Node back; //aponta para traz
+
+            public Node (Music musics){
+                this.musics = musics;
             }
-            class Node {
-                Music musics; // so que aqui vamos ter o nosso objeto musics que tem os dados
-                Node next; //aponta para frente
-                Node back; //aponta para traz
 
-                public Node (Music musics){
-                    this.musics = musics;
+        }
+        class DoublyLinkedList {
+            Node head;
+            Node tail;
+
+            public void add(Music musics){
+                Node newNode = new Node(musics);
+                if(head == null && tail == null){
+                    head = tail = newNode;
+                } else {
+                    tail.next = newNode; // o ultimo nó vai apotar para o tail
+                    newNode.back = tail; // agora o nó sabe que o tail é o anterior dele
+                    tail = newNode; //  o novo nó passa a ser o ultimo da lista
                 }
-
             }
-            class DoublyLinkedList {
-                Node head;
-                Node tail;
-                
-                public void add(Music musics){
-                    Node newNode = new Node(musics);
-                    if(head == null && tail == null){
-                        head = tail = newNode;
-                    } else {
-                        tail.next = newNode; // o ultimo nó vai apotar para o tail
-                        newNode.back = tail; // agora o nó sabe que o tail é o anterior dele
-                        tail = newNode; //  o novo nó passa a ser o ultimo da lista
-                    }
-                }
-                public void print(){
-                    Node currentNode = head; // começa do head
-                    while(currentNode != null){
-                        System.out.println(currentNode.musics); //printa as musicas
-                        currentNode = currentNode.next; //vai para o proximo nó
-                        if (currentNode == null){
-                            break;
-                        }
+            public void print(){
+                Node currentNode = head; // começa do head
+                while(currentNode != null){
+                    System.out.println(currentNode.musics); //printa as musicas
+                    currentNode = currentNode.next; //vai para o proximo nó
+                    if (currentNode == null){
+                        break;
                     }
                 }
             }
         }
+    }
+    public static void playListMusic(){
 
         System.out.printf("What will the playlist's name be ? ");
         String namePlaylist = scanner.nextLine();
@@ -150,7 +159,7 @@ public class Methods {
         if (response.equals("y")) {
             System.out.println("Choise a song to add");
             boolean n = Methods.listAllMusic();
-            if(n){
+            if(!n){
                 returnMenu();
                 cleanConsole();
                 return;
@@ -160,6 +169,7 @@ public class Methods {
             String optionMusicAddPlaylist = scanner.nextLine();
             for(Music music : musics){
                 if (optionMusicAddPlaylist.equals(music.getName())){
+                    playlist.addMusic(music);
                     list.add(music);
                 }
             }
@@ -167,12 +177,20 @@ public class Methods {
             returnMenu();
         }
 
-        Playlist playListName = new Playlist(namePlaylist);
-        playLists.add(playListName);
+        playLists.add(playlist);
+        System.out.println("Playlist created successfully!");
 
     }
     public static void PlayPlaylist(){
         System.out.println("Your playlists");
+        for (Playlist p : playLists){
+            System.out.println(p);
+        }
+        System.out.println("Which playlist do you want to play ? ");
+        String playListChoicePlay = scanner.nextLine();
+
+
+        returnMenu();
 
     }
 

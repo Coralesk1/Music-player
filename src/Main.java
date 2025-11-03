@@ -16,7 +16,7 @@ public class Main {
                 6 - Play playlist
                """);
 
-            System.out.println("Enter the option: ");
+            System.out.printf("Enter the option: ");
             int option = scanner.nextInt();
             scanner.nextLine();
 
@@ -40,14 +40,15 @@ public class Main {
                     Methods.cleanConsole();
                     Methods.playListMusic();
                     continue;
-
+                case 6:
+                    Methods.cleanConsole();
+                    Methods.PlayPlaylist();
+                    continue;
                 default:
                     System.out.println("Invalid option.");
                     break;
             }
             Methods.closeScanner();
         }
-
-
     }
 }
