@@ -13,7 +13,8 @@ public class Main {
                 3 - Search music 
                 4 - Remove music
                 5 - Create playlist
-                6 - Play playlist
+                6 - Add music to playlist
+                0 - Exit program
                """);
 
             System.out.printf("Enter the option: ");
@@ -38,17 +39,21 @@ public class Main {
                     continue;
                 case 5:
                     Methods.cleanConsole();
-                    Methods.playListMusic();
+                    Methods.creatPlayListMusic();
                     continue;
                 case 6:
                     Methods.cleanConsole();
-                    Methods.PlayPlaylist();
+                    Methods.addMusicPlayList();
                     continue;
+                case 0:
+                    Methods.closeScanner();
+                    System.out.println("Stopping the program ...");
+                    return;
                 default:
+                    Methods.cleanConsole();
                     System.out.println("Invalid option.");
                     break;
             }
-            Methods.closeScanner();
         }
     }
 }
